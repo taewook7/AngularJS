@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	var app = angular.module("test_app", [])
+	
+	app.controller("controller1",function($scope){
+		$scope.a1 = 0
+		$scope.a2 = 0
+		$scope.a3 = 0
+		
+		
+		$scope.enter = function(){
+			$scope.box1 = $scope.a1++
+		}
+		
+		$scope.leave= function() {
+			$scope.box1="마우스가 나왔습니다."
+		}
+		
+		$scope.over = function(){
+			$scope.box2 = $scope.a2++
+		}
+		$scope.out = function() {
+			$scope.box2 = "마우스가 나갔습니다."
+		}
+		
+		$scope.move= function() {
+			$scope.box3 = $scope.a3++
+		}
+		
+		$scope.down = function(){
+			$scope.box4 = "마우스를 눌렀습니다."
+		}
+		$scope.up = function() {
+			$scope.box4 = "마우스를 뗴었습니다."
+		}
+		
+		$scope.click = function(){
+			$scope.box5 = "마우스클릭"
+		}
+		
+		$scope.dblclick=function(){
+			$scope.box5 ="마우스 더블클릭"
+		}
+		$scope.focus = function() {
+			$scope.box6 ="포커스가 주어졌습니다."
+		}
+		$scope.blur= function() {
+			$scope.box6="포커스를 잃었습니다."
+		}
+		
+		$scope.change = function() {
+			$scope.box6 = "입력된 값이 변경되었습니다."+$scope.input1
+		}
+		$scope.copy=function() {
+			$scope.box7 = "복사되었습니다."
+		}
+		$scope.cut =function(){
+			$scope.box7 ="잘라내었습니다."
+		}
+		$scope.paste =function(){
+			$scope.box7 ="붙혀넣었습니다."
+		}
+		$scope.keydown=function(){
+			$scope.box8 = "keydown"
+		}
+		$scope.keyup = function(){
+			$scope.box8="keyup"
+		}
+		$scope.keypress=function(){
+			$scope.box9="keypress"
+		}
+	})
+</script>
+<style>
+	.box {
+			width:200px;
+			height:200px;
+			border:1px solid black;
+		}
+	.box2 {
+			width: 50%;
+			height: 50%;
+			border: 1px solid black;
+			margin:25%;
+	}
+</style>
+
+</head>
+<body>
+<div ng-app="test_app" ng-controller="controller1">
+	<div class="box" ng-mouseenter="enter()" ng-mouseleave="leave()">
+		<div class="box2"></div>
+	</div>
+	<p> box1 : {{box1}}</p>	
+	<hr/>
+	<div class="box" ng-mouseover="over()" ng-mouseout="out()">
+		<div class="box2"></div>
+	</div>
+	<p> box2 : {{box2}} </p>
+	<hr>
+	<div class="box" ng-mousemove="move()"></div>
+	<p> box3 : {{box3}} </p>
+	<hr/>
+	<div class="box" ng-mousedown="down()" ng-mouseup="up()"></div>
+	<p> box4 : {{box4}}</p>
+	<hr/>
+	<div class="box" ng-click="click()" ng-dblclick="dblclick()"></div>
+	<p> box5 : {{box5}}</p>
+	<hr/>
+	
+	<input type="text" ng-focus="focus()" ng-blur="blur()" ng-model="input1" ng-change="change()"
+	ng-copy="copy()" ng-cut="cut()" ng-paste="paste()"/>
+	<p>box6 : {{box6}}</p>
+	<p>box7 : {{box7}}</p>
+	<hr/>
+	<input type="text" ng-model="input2" ng-keydown="keydown()" ng-keyup="keyup()" ng-keypress="keypress()"/>
+	<p>box8: {{box8}}</p>
+	<p>box9: {{box9}}</p>
+</div>
+</body>
+</html>

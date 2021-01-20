@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	var app=angular.module("test_app", [])
+	app.directive("directive1",function() {
+		return {
+			restrict : "E",
+			template : "사용자 정의 지시자1"
+		}
+	})
+	
+	app.directive("directive2",function() {
+		return {
+			restrict : "A",
+			template : "사용자 정의 지시자2"
+		}
+	})
+	
+	app.directive("directive3",function() {
+		return {
+			restrict : "C",
+			template : "사용자 정의 지시자3"
+		}
+	})
+	
+	app.directive("directive4", function () {
+		return {
+			restrict : "M",
+			replace : true,
+			template : "<p> 사용자 지시자4 : 사용자 정의 지시자4</p>"
+		}
+	})
+	
+	app.directive("directive5", function() {
+		return {
+			restrict : "EC",
+			template :"사용자 정의 지시자5"
+		}
+	})
+</script>
+</head>
+<body>
+<div ng-app="test_app" ng-init="data1=100;data2='문자열';data4=[100,200,300]">
+	<p ng-repeat="a1 in data4">{{a1}}</p>
+	<p>사용자 정의 지시자 1 : <directive1></directive1></p>
+	<p>사용자 정의 지시자 2 : <span directive1></span>
+	<p>사용자 정의 지시자 1 : <directive2></directive2></p>
+	<p>사용자 정의 지시자 2 : <span directive2></span>
+	<p>사용자 정의 지시자 3 : <span class="directive3"></span>
+<!-- 	directive: directive4 -->
+	<p>사용자 정의 지시자 5 : <directive5></directive5></p>
+	<p>사용자 정의 지시자 6 : <span class="directive5"></span></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	var app = angular.module("test_app",[])
+	
+	app.controller("controller1", function($scope,$http){
+		$scope.data1 = [
+							{
+								name : "홍길동",
+								age : 20				
+							},
+							{
+								name : "강길동",
+								age : 21
+							},
+							{
+								name : "최길동",
+								age : 22 
+							}
+						]
+		var http = $http.get("data1.html")
+		http.then(function(response){
+			$scope.data2 = response.data
+		})
+		
+	})
+</script>
+</head>
+<body>
+<div ng-app="test_app" ng-controller="controller1">
+	<table border="1">
+		<tr ng-repeat="obj in data1">
+			<td>{{$index + 1}}</td>
+			<td ng-if="$odd" style="color:red">{{obj.name}}</td>
+			<td ng-if="$even" style="color:blue">{{obj.name}}</td>
+			<td >{{obj.age}}</td>
+		</tr>
+	</table>
+	<hr/>
+	<table border="1">
+		<tr ng-repeat="obj in data2">
+			<td>{{$index + 1}}</td>
+			<td ng-if="$odd" style="color:red">{{obj.name}}</td>
+			<td ng-if="$even" style="color:blue">{{obj.name}}</td>
+			<td >{{obj.age}}</td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

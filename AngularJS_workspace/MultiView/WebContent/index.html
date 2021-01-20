@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.19/angular-ui-router.js"></script>
+<script src="js/app.js"></script>
+<script>
+	var app = angular.module("test_app",["ui.router"])
+	
+	app.controller("con1",function($scope){
+		$scope.data1= 100
+	})
+	app.controller("con2",function($scope){
+		$scope.data2=200
+	})
+	
+	app.config(function($stateProvider, $urlRouterProvider){
+		$urlRouterProvider.otherwise("main")
+		
+		var mainState = {
+			name :"main",
+			url : "/main",
+			views : {
+				"main" : {
+					templateUrl : "main.html",
+					controller : "con2"
+				},
+				"header@main" : {
+					template : "<h3>header</h3>"
+				},
+				"content@main" : {
+					templateUrl : "sub.html"
+				},
+				"footer@main" : {
+					template : "<h3>footer</h3>"
+				},
+				"sub1@main" : {
+					template : "<h3>sub1 : {{data1}}</h3>",
+					controller : "con1"
+					
+				},
+				"sub2@main" : {
+					template : "<h3>sub2 : {{data2}}</h3>"
+				},
+				"sub3@main" : {
+					template : "<h3>sub3 : {{data2}}</h3>"
+				}
+			}
+		}
+		
+		$stateProvider.state(mainState);
+		
+	})
+</script>
+<title>Insert title here</title>
+</head>
+<body ng-app="test_app">
+	<ui-view name="main">
+	</ui-view>
+</body>
+</html>

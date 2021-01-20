@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>Insert title here</title>
+</head>
+<script>
+	var app=angular.module("test_app",[])
+	app.controller("controller1",function($scope){
+		$scope.showAlert = function(){
+			alert("버튼을 눌렀습니다.")
+		}
+	})
+</script>
+<body>
+<div ng-app="test_app" ng-controller="controller1">
+	<button type="button" ng-click="showAlert()" ng-disabled="btnDisabled">Button</button>
+	<br/>
+	<input type="checkbox" ng-model="btnDisabled">버튼활성화/비활성화
+	<hr/>
+	<input type="checkbox" ng-model="show" >p 태그 show/hide
+	<p ng-show="show" >문자열이 보일까요?</p>
+	<hr/>
+	<input type="checkbox" ng-model="hide">p 태그 show/hide
+	<p ng-hide="hide">문자열이 보일까요 안보일까요?</p>
+</div>
+</body>
+</html>
